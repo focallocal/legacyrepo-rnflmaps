@@ -1,29 +1,11 @@
-import React, {Component} from 'react'
-import {StyleSheet, View} from 'react-native'
+import  * as React from 'react'
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import Map from './screens/map'
-import Home from './screens/home'
-import Tabs from 'react-native-tabs'
+import HomeScreen from './screens/home'
 
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Map,
+});
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Tabs selected="Map">
-          <Map name="Map"/>
-          <Home name="Home"/>
-        </Tabs>
-      </View>
-    )
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-})
+export default createAppContainer(TabNavigator)
