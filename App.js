@@ -1,7 +1,7 @@
 import  * as React from 'react'
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
-import Map from './screens/map'
-import HomeScreen from './screens/home'
+import Map from './src/screens/map'
+import HomeScreen from './src/screens/home'
 
 const TabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
