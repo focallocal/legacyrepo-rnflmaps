@@ -1,7 +1,9 @@
 // @flow
 import {getConfig} from './config'
-import Geocoder from 'react-native-geocoding'
+import Geocoder from 'react-native-geocoder'
 import {Dimensions} from 'react-native'
+
+console.log(Geocoder)
 
 const {width, height} = Dimensions.get('window')
 
@@ -24,22 +26,24 @@ const config = getConfig()
 
 const {googleApiKey} = config.private
 
-Geocoder.init(googleApiKey)
+Geocoder.fallbackToGoogle(googleApiKey)
 
 export async function geocodeFromString(input: string): { location?: Location, error?: string } {
   try {
-    const {results, status} = await Geocoder.from(input)
-    if (status === 'OK' && results.length) {
-      const [{geometry: {location}}] = results
+    const res = await Geocoder.geocodeAddress(input)
+    if (res) {
+      console.log(res)
+      const [{position}] = res
       return {
         location: {
-          latitude: location.lat,
-          longitude: location.lng,
+          latitude: position.lat,
+          longitude: position.lng,
           ...DELTAS,
         },
       }
     }
   } catch (e) {
+    console.log(e)
     return {error: `Could not geocode ${input}`}
   }
 }

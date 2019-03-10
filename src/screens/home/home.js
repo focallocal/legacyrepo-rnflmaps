@@ -12,6 +12,7 @@ type Props = {
   onSetLocation: (location: Location) => void,
   onSetLocationErrorMessage: (errorMessage: string) => void,
   onClearErrorMessage: () => void,
+  goMap: () => void,
 }
 
 type State = {
@@ -24,8 +25,15 @@ class Home extends React.Component<Props, State> {
     search: ''
   }
 
+  _setLocation(location: Location) {
+    const {onClearErrorMessage, onSetLocation, goMap} = this.props
+    onClearErrorMessage()
+    onSetLocation(location)
+    goMap()
+  }
+
   _currentLocation = () => {
-    const {onClearErrorMessage, onSetLocation, onSetLocationErrorMessage} = this.props
+    const {onSetLocationErrorMessage} = this.props
 
     getCurrentLocation((err, location) => {
       if(err) {
@@ -33,14 +41,13 @@ class Home extends React.Component<Props, State> {
         return onSetLocationErrorMessage('Could not get current location')
       }
       if(location) {
-        onClearErrorMessage()
-        onSetLocation(location)
+        this._setLocation(location)
       }
     })
   }
 
   _geocode = async () => {
-    const {onClearErrorMessage, onSetLocation, onSetLocationErrorMessage} = this.props
+    const {onSetLocationErrorMessage} = this.props
     const {search} = this.state
     const result = await geocodeFromString(search)
     const {location, error} = result
@@ -48,8 +55,7 @@ class Home extends React.Component<Props, State> {
       return onSetLocationErrorMessage(error)
     }
     if(location) {
-      onClearErrorMessage()
-      onSetLocation(location)
+      this._setLocation(location)
     }
   }
 

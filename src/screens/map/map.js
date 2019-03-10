@@ -13,7 +13,6 @@ class Map extends React.Component<Props> {
 
   render() {
     const {location} = this.props
-    console.log(location)
     const initialRegion = location ? location : null
     return (
         <MapView

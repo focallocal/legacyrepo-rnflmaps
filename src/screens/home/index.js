@@ -5,9 +5,10 @@ import {setLocation, setLocationErrorMessage, clearErrorMessage} from '../../act
 
 import type {Location} from '../../services/geocoder'
 
-const mapStateToProps = ({location}) => {
+const mapStateToProps = ({location}, {navigation}) => {
   return {
     errorMessage: location.errorMessage,
+    goMap: () => navigation.navigate('Map')
   }
 }
 

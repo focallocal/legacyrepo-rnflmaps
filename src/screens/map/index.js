@@ -2,9 +2,11 @@
 import {connect} from 'react-redux'
 import MapScreen from './map'
 
-const mapStateToProps = ({location}) => {
-  console.log(location)
-  return location
+const mapStateToProps = ({location}, {navigation}) => {
+  return {
+    ...location,
+    goHome: () => navigation.navigate('Home')
+  }
 }
 
 export default connect(mapStateToProps)(MapScreen)
