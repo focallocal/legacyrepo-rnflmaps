@@ -1,3 +1,5 @@
+// @flow
+
 export function getConfig() {
   return {
     private: {

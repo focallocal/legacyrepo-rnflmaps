@@ -1,14 +1,16 @@
+// @flow
 import React from 'react'
 import {TextInput, StyleSheet} from 'react-native'
 
 type Props = {
-  onChangeText?: () => string,
+  onChangeText?: ?(text: string) => void,
   onEndEditing?: () => void,
   placeholder?: string,
   value: string,
 }
 
 const Input = (props: Props) => {
+
   const {
     onChangeText,
     onEndEditing,
