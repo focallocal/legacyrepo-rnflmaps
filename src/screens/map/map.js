@@ -62,7 +62,6 @@ class Map extends React.Component<Props, State> {
   }
 
   _fetchEvents() {
-    console.log('fetching')
     const {location} = this.props
     const skip = 0
     const limit = 30
@@ -74,11 +73,6 @@ class Map extends React.Component<Props, State> {
     // console.log('did mount')
     this.mounted = true
     this._fetchEvents()
-  }
-
-  componentDidUpdate(): void {
-    // console.log('Did update')
-    // this._fetchEvents()
   }
 
   componentWillUnmount(): void {
@@ -98,8 +92,6 @@ class Map extends React.Component<Props, State> {
         {
           events && events.map(event => {
             const [longitude, latitude] = event.address.location.coordinates
-            console.log({latitude, longitude})
-            console.log(event.overview, event.description)
             return <Marker
               key={event._id}
               coordinate={{latitude, longitude}}

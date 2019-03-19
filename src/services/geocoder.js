@@ -3,8 +3,6 @@ import {getConfig} from './config'
 import Geocoder from 'react-native-geocoder'
 import {Dimensions} from 'react-native'
 
-console.log(Geocoder)
-
 const {width, height} = Dimensions.get('window')
 
 const ASPECT_RATIO = width / height
