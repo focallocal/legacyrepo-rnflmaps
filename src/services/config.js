@@ -5,5 +5,6 @@ export function getConfig() {
     private: {
       googleApiKey: 'AIzaSyA7lsqrILjY737_9JHXYa4cKziHnRwy3QA'
     },
+    serverUrl: 'wss://focallocal.org/websocket',
   }
 }
